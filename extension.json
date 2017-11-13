@@ -1,0 +1,23 @@
+{
+	"name": "OpenID Connect API",
+	"version": "0.2",
+	"author": [
+		"[https://github.com/ansmithee Alan Nobody Smithee]"
+	],
+	"url": "https://github.com/ansmithee/mediawiki-OpenIDConnectAPI",
+	"descriptionmsg": "OpenID Connect API authentication",
+	"type": "other",
+	"requires": {
+		"extensions": {
+			"OpenID Connect": ">= 4.0"
+		}
+	},
+	"AutoloadClasses": {
+		"OpenIDConnectAPI": "OpenIDConnectAPI.class.php"
+	},
+	"Hooks": {
+		"ApiBeforeMain": "OpenIDConnectAPI::beforeAPIMain"
+	},
+	"load_composer_autoloader": true,
+	"manifest_version": 1
+}
