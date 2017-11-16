@@ -26,6 +26,7 @@ class OpenIDConnectAPI {
 
                 $main->getContext()->getUser()->mId = $uid;
                 $main->getContext()->getUser()->loadFromID();
+                $main->getContext()->getRequest()->getSession()->set('wsTokenSecrets', array('default' => $authz));
             }
         }
     }
