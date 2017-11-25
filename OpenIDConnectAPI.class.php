@@ -6,7 +6,7 @@ Requests::register_autoloader();
 
 
 class OpenIDConnectAPI {
-    public function beforeAPIMain( &$main ) {
+    public static function beforeAPIMain( &$main ) {
         if(array_key_exists("HTTP_AUTHORIZATION", $_SERVER)) {
             $authz = $_SERVER["HTTP_AUTHORIZATION"];
             if(substr($authz, 0, strlen(BEARER_TOKEN_PREFIX)) === BEARER_TOKEN_PREFIX) {
@@ -31,7 +31,7 @@ class OpenIDConnectAPI {
         }
     }
 
-    function checkApiToken($token) {
+    static function checkApiToken($token) {
         $iss = $GLOBALS['wgOpenIDConnectAPI_Issuer'];
         if ( !isset( $GLOBALS['wgOpenIDConnectAPI_TokenScope'] ) ) {
             wfDebug("OpenID Connect API: misconfigured");
