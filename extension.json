@@ -1,6 +1,6 @@
 {
 	"name": "OpenID Connect API",
-	"version": "0.2",
+	"version": "0.4",
 	"author": [
 		"[https://github.com/ansmithee Alan Nobody Smithee]"
 	],
@@ -9,7 +9,7 @@
 	"type": "other",
 	"requires": {
 		"extensions": {
-			"OpenID Connect": ">= 4.0"
+			"OpenID Connect": ">= 6.0"
 		}
 	},
 	"AutoloadClasses": {
