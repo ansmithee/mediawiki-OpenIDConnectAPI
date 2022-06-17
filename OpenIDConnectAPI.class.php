@@ -43,11 +43,16 @@ class OpenIDConnectAPI {
             return false;
         }
         $tokenurl = $GLOBALS['wgOpenIDConnectAPI_TokenInfoURL'];
-        if ( !isset( $GLOBALS['wgOpenIDConnect_Config'][$iss] ) ) {
-            wfDebug("OpenID Connect API: misconfigured");
+        $config = NULL;
+        foreach($GLOBALS["wgPluggableAuth_Config"] as $possible_config) {
+                if ($possible_config["plugin"] == "OpenIDConnect" && $possible_config["data"]["providerURL"] == $iss) {
+                        $config = $possible_config["data"];
+                }
+        }
+        if ($config === NULL) {
+            die("OpenID Connect API: misconfigured");
             return false;
         }
-        $config = $GLOBALS['wgOpenIDConnect_Config'][$iss];
         if ( !isset( $config['clientID'] ) || !isset( $config['clientsecret'] ) ) {
             wfDebug("OpenID Connect API: misconfigured");
             return false;
