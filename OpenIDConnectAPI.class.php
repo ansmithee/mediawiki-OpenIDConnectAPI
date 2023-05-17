@@ -1,8 +1,8 @@
 <?php
 const BEARER_TOKEN_PREFIX = 'Bearer ';
 
-require_once('/usr/share/php/rmccue/Requests/Requests.php');
-Requests::register_autoloader();
+require_once('/usr/share/php/rmccue/Requests/src/Autoload.php');
+WpOrg\Requests\Autoload::register();
 
 
 class OpenIDConnectAPI {
@@ -61,14 +61,14 @@ class OpenIDConnectAPI {
         $clientsecret = $config['clientsecret'];
 
         $options = array(
-            'auth' => new Requests_Auth_Basic(array($clientid, $clientsecret))
+            'auth' => new WpOrg\Requests\Auth\Basic(array($clientid, $clientsecret))
         );
         $data = array(
             'token_type_hint' => 'access_token',
             'token' => $token
         );
 
-        $response = Requests::post($tokenurl, array(), $data, $options);
+        $response = WpOrg\Requests\Requests::post($tokenurl, array(), $data, $options);
 
         if(!$response->success) {
             http_response_code(401);
